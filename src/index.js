@@ -28,6 +28,23 @@ const resolvers = {
             }
             links.push(link)
             return link
+        },
+        updateLink: (parent, args) => {
+            links = links.map((link) => {
+                return (link.id === args.id)
+                ? args
+                : link
+            })
+            return links
+        },
+        deleteLink: (parent, args) => {
+            const newLinks = [];
+            links.forEach((link, index) => {
+                if(link.id != args.id)
+                    newLinks.push(link)
+            })
+            links = newLinks
+            return links
         }
     },
     Link: {
